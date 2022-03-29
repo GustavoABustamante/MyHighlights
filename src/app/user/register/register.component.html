@@ -25,27 +25,25 @@
       </div>
     </div>
     <!-- Password -->
-    <div class="mb-3">
-      <label class="inline-block mb-2">Password</label>
-      <app-input [control]="password" type="password" placeholder="Ingresa tu contraseña"></app-input>
-    </div>
-    <!-- Confirm Password -->
-    <div class="mb-3">
-      <label class="inline-block mb-2">Confirm Password</label>
-      <app-input [control]="confirm_password" type="password" placeholder="Confirma tu contraseña"></app-input>
+    <div class="grid grid-cols-6 gap-2 mb-3">
+      <div class="col-span-3 sm:col-span-3">
+        <label class="inline-block mb-2">Password</label>
+        <app-input [control]="password" type="password" placeholder="Ingresa tu contraseña"></app-input>
+      </div>
+      <!-- Confirm Password -->
+      <div class="col-span-3 sm:col-span-3">
+        <label class="inline-block mb-2">Confirm Password</label>
+        <app-input [control]="confirm_password" type="password" placeholder="Confirma tu contraseña"></app-input>
+      </div>
     </div>
     <!-- Check -->
-    <div class="mb-3">
-      <label class="relative flex mb-8 items-center">
-        <input class="relative ml-10 appearance-none" type="checkbox">
-        <button class="absolute top-1/2 left-0 transform -translate-y-1/2 h-6 w-6">
-          <svg width="27" height="27" viewbox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="27" height="27" rx="8" fill="indigo"></rect>
-            <path d="M11.4534 19L6 13.6758L6.72022 12.9726L11.4534 17.5937L21.2798 8L22 8.70316L11.4534 19Z" fill="white"></path>
-          </svg>
-        </button>
-        <span class="ml-2 text-sm text-gray-400">Shipping address is the same as my billing address</span>
-      </label>
+    <div class="flex justify-center">
+        <div class="flex form-check">
+          <input class="form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-indigo-400 checked:border-indigo-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label text-gray-500 inline-block text-sm mb-4" for="flexCheckDefault">
+            Estoy de acuerdo con las políticas de privacidad.
+          </label>
+        </div>
     </div>
     <button type="submit" [disabled]="registerForm.invalid"
       class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition

@@ -5,7 +5,12 @@ module.exports = {
     extend: {
       minHeight: {
         182: "48rem",
+        '3/4': '75%',
+        '90vh': '90vh',
       },
+      height: {
+        '90vh': '90vh',
+      }
     },
   },
   plugins: [],
