@@ -1,6 +1,6 @@
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
-  safelist: ["bg-blue-400", "bg-green-400", "bg-red-400"],
+  safelist: ["bg-neutral-800", "bg-green-800", "bg-red-800"],
   theme: {
     extend: {
       minHeight: {

@@ -1,6 +1,6 @@
 <div class="flex items-center text-white font-bold p-4 mb-4 rounded-md"
 [ngClass]="bgColor">
-    <div class="mr-2">
+    <div *ngIf="loading" class="mr-2">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="48px" height="48px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
             <path d="M10 50A40 40 0 0 0 90 50A40 45 0 0 1 10 50" fill="#f0f5f6" stroke="none">
               <animateTransform attributeName="transform" type="rotate" dur="1.5384615384615383s" repeatCount="indefinite" keyTimes="0;1" values="0 50 52.5;360 50 52.5"></animateTransform>

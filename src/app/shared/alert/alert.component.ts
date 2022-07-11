@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { InputComponent } from '../input/input.component';
 
 @Component({
   selector: 'app-alert',
@@ -6,15 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./alert.component.css']
 })
 export class AlertComponent implements OnInit {
-@Input() color = "indigo"
+@Input() color = "neutral"
+@Input() loading = false
 
 get bgColor() {
-  return `bg-${this.color}-400`
+  return `bg-${this.color}-800`
 }
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
