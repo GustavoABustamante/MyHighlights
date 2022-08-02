@@ -2,7 +2,7 @@
 <header id="header" class="bg-secondary">
     <nav class="container mx-auto flex justify-start items-center py-4 px-4">
       <!-- App Name -->
-      <a class="text-3xl ont-extrabold text-zinc-900 font-bold uppercase mr-4" href="index.html">
+      <a class="text-3xl ont-extrabold text-zinc-900 font-bold uppercase mr-4" routerLink="/">
           <!-- <img class="h-14 hover:scale-110 transition ease-in-out delay-100" src="../../assets/img/white_logo_transparent_background.png" alt=""> -->
           OutWorld
         </a>
@@ -11,17 +11,22 @@
         <!-- Primary Navigation -->
         <ul class="flex flex-row mt-1">
           <!-- Navigation Links -->
-          <li>
+          <li *ngIf="!(auth.isAuthenticated$ | async); else authLinks">
             <a class="px-2" href="#" (click)="openModal($event)">Login / Register</a>
           </li>
-          <li>
-            <a class="px-2" href="#">Manage</a>
-          </li>
-          <li>
-            <a class="px-2" href="#">Upload</a>
-          </li>
-          <li>
-            <a class="px-2" href="about.html">About</a>
+          <ng-template #authLinks>
+            <li>
+              <a class="px-2" routerLink="/manage" routerLinkActive="text-neutral-800 font-extrabold" [routerLinkActiveOptions]="{ exact: true }" [queryParams]="{sort: '1'}">Manage</a>
+            </li>
+            <li>
+              <a class="px-2" href="#" routerLink="/upload" routerLinkActive="text-neutral-800 font-extrabold" [routerLinkActiveOptions]="{ exact: true }">Upload</a>
+            </li>
+            <li>
+              <a class="px-2" href="#" (click)="auth.logout($event)">Cerrar sesión</a>
+            </li>
+          </ng-template>
+          <li routerLinkActive="text-neutral-900 font-extrabold">
+            <a class="px-2" routerLink="/about" routerLinkActive="text-neutral-900 font-extrabold">About</a>
           </li>
         </ul>
         <!-- Language Switcher -->

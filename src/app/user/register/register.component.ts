@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
+import IUser from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { RegisterValidators } from '../validators/register-validators';
+import { EmailTaken } from '../validators/email-taken';
 
 @Component({
   selector: 'app-register',
@@ -8,8 +11,12 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  constructor(private auth: AngularFireAuth) {}
+  constructor(private auth: AuthService, private emailTaken: EmailTaken) {}
 
+  showAlert = false
+  alertMsg = ""
+  alertColor = "neutral"
+  loading = false
   inSubmission = false
 
   name = new FormControl('', [
@@ -19,7 +26,7 @@ export class RegisterComponent {
   email = new FormControl('', [
     Validators.required,
     Validators.email
-  ]);
+  ], [this.emailTaken.validate]);
   age = new FormControl('',[
     Validators.required,
     Validators.min(18),
@@ -39,11 +46,6 @@ export class RegisterComponent {
     Validators.maxLength(15),
   ]);
 
-  showAlert = false
-  alertMsg = ""
-  alertColor = "neutral"
-  loading = false
-
   registerForm = new FormGroup({
     name: this.name,
     email: this.email,
@@ -51,7 +53,7 @@ export class RegisterComponent {
     password: this.password,
     confirm_password: this.confirm_password,
     phoneNumber: this.phoneNumber
-  })
+  }, [RegisterValidators.match('password', 'confirm_password')])
 
   async register() {
     this.showAlert = true
@@ -59,16 +61,9 @@ export class RegisterComponent {
     this.alertColor = "neutral"
     this.inSubmission = true
     this.loading = true
-
-    const { email, password } = this.registerForm.value;
   
     try {
-      const userCred = await this.auth.createUserWithEmailAndPassword(
-        email as string,
-        password as string
-      )
-      console.log(userCred);
-      
+      await this.auth.createUser(this.registerForm.value as IUser)
     } catch (error) {
       console.error(error)
       this.alertMsg = '¡Ha ocurrido un error! Por favor vuelve a iniciar sesión más tarde.'

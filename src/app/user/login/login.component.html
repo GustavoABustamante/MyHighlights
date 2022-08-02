@@ -1,25 +1,37 @@
+<app-alert *ngIf="showAlert" [color]="alertColor" [loading]="loading">
+  {{alertMsg}}
+</app-alert>
 <!-- Login Form -->
-<form>
+<form #loginForm= "ngForm" (ngSubmit)="login()">
     <!-- Email -->
     <div class="mb-3">
       <label class="inline-block mb-2">Email</label>
-      <input type="email"
+      <input #email="ngModel" name="email" type="email" [(ngModel)]="credentials.email"
         class="block w-full py-1.5 px-3 text-stone-800 border border-gray-400 transition
           duration-500 focus:outline-none rounded bg-transparent
-          focus:border-indigo-400"
-        placeholder="Enter Email" />
+          focus:border-indigo-400" required placeholder="Ingresa tu email" 
+        pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" />
+        <p *ngIf="email.errors && email.touched && email.dirty" class="text-red-400">
+          Email ingresado es inválido
+        </p>
+        
     </div>
     <!-- Password -->
     <div class="mb-3">
-      <label class="inline-block mb-2">Password</label>
-      <input type="password"
+      <label class="inline-block mb-2">Contraseña</label>
+      <input type="password" name="password" 
+        [(ngModel)]="credentials.password"
+        required #password="ngModel"
         class="block w-full py-1.5 px-3 text-stone-800 border border-gray-400 transition
         duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-        placeholder="Password" />
+        placeholder="contraseña" />
+        <p *ngIf="password.errors && password.touched && password.dirty" class="text-red-400">
+          Contraseña inválida
+        </p>
     </div>
-    <button type="submit"
+    <button [disabled]="loginForm.invalid || inSubmission" type="submit"
       class="block w-full bg-stone-900 text-white py-1.5 px-3 rounded transition
-        hover:bg-stone-800">
+        hover:bg-stone-800 disabled:opacity-50 disabled:bg-stone-600">
       Submit
     </button>
   </form>
