@@ -13,13 +13,13 @@
       <div class="inline-flex align-bottom bg-secondary rounded-lg text-stone-900 text-left overflow-hidden
         shadow-xl transform transition-all min-h-90vh sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
         <!-- <div class="inline-flex bg-white rounded-lg text-left overflow-hidden shadow-xl transition-all mx-auto max-w-sm lg:max-w-4xl"> -->
-        <div class="hidden lg:block lg:w-1/2 bg-cover" style="background-image:url('../../../assets/img/login.jpg')"></div>
-        <div class="lg:w-1/2 w-full">
+        <div *ngIf="modalID == 'auth'" class="hidden lg:block lg:w-1/2 bg-cover" style="background-image:url('../../../assets/img/login.jpg')"></div>
+        <div class="/*lg:w-1/2*/ w-full">
           <!-- <div class="flex justify-between items-center py-4 text-center px-6"> -->
           <div class="flex w-full pt-4 pl-8 pr-4">
             <!-- Image modal -->
-            <!-- <img class="mx-auto h-20 w-auto" src="../../../assets/img/white_logo_dark_background.jpg" alt="Workflow"> -->
-            <h2 class="text-5xl font-extrabold mx-auto w-auto">OUTWORLD</h2>
+            <img class="mx-auto h-20 w-auto" src="../../../assets/img/logo_white_background.jpg" alt="Workflow">
+            <!-- <h2 class="text-5xl font-extrabold mx-auto w-auto">OUTWORLD</h2> -->
             
             <!-- Modal Close Button -->
             <div class="modal-close cursor-pointer z-50" (click)="closeModal()">
