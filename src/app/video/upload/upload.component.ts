@@ -22,7 +22,7 @@ export class UploadComponent implements OnDestroy {
   nextStep = false
   showAlert = false
   alertColor = 'neutral'
-  alertMsg = 'Por favor espera... ¡Tu video esta siendo proceso!'
+  alertMsg = 'Por favor espera... ¡Tu video esta siendo procesado! '
   loading = false
   inSubmission = false
   percentage = 0
@@ -83,7 +83,7 @@ export class UploadComponent implements OnDestroy {
     this.uploadForm.disable()
     this.showAlert = true
     this.alertColor = 'neutral'
-    this.alertMsg = 'Por favor espera... ¡Tu video esta siendo procesado!'
+    this.alertMsg = 'Por favor espera... ¡Tu video esta siendo procesado! '
     this.inSubmission = true
     this.loading = true
     this.showPercentage = true
