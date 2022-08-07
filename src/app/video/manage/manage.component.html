@@ -1,11 +1,16 @@
   <!-- Top Bar -->
-  <section class="container mx-auto my-8 bg-secondary p-6">
+  <section class="container mx-auto my-4 py-4 bg-white p-6">
     <div class="rounded relative flex justify-between">
-      <a href="#" routerLink="/upload" class="bg-neutral-800 text-white py-4 px-10 text-xl">Upload Videos</a>
+      <a href="#" routerLink="/upload" class="flex bg-zinc-800 text-white py-4 px-10 text-l font-bold rounded">
+        Upload Videos
+        <span class="material-icons pl-2">
+          file_upload
+        </span>
+      </a>
       
       <!-- Sort Videos -->
       <select (change)="sort($event)"
-      class="text-black px-8 text-xl outline-none appearance-none">
+      class="block px-8 pr-12 text-l font-bold bg-zinc-800 border border-gray-300 text-gray-200 rounded-lg focus:ring-zinc-800 focus:border-gray-200">
         <option value="1" [selected]="videoOrder === '1'">Recent Uploads</option>
         <option value="2" [selected]="videoOrder === '2'">Oldest Uploads</option>
       </select>
@@ -13,13 +18,13 @@
   </section>
 
   <!-- User's Video Section -->
-  <div class="container mx-auto my-8">
+  <div class="container mx-auto my-8 px-4">
     <!-- Video List -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-      <div *ngFor="let clip of clips" class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary flex flex-col justify-start">
+      <div *ngFor="let clip of clips" class="mt-6 rounded-tl-2xl rounded-br-2xl shadow-xl bg-secondary flex flex-col justify-start transform hover:-translate-y-2 hover:shadow-2xl transition duration-300">
   
         <!-- Image -->
-        <a href="#">
+        <a [routerLink]="['/', 'clip', clip.docID]">
           <img class="card-img-top rounded-tl-2xl w-full" [src]="clip.screenshotURL" crossorigin>
         </a>
   
@@ -30,18 +35,18 @@
           <a [routerLink]="['/', 'clip', clip.docID]" class="font-bold mb-2">
             {{ clip.title }}
           </a>
-          <a (click)="copyToClipboard($event, clip.docID)" href="#" class="bg-gray-400 text-white px-2 py-1 ml-2 text-sm rounded">
+          <a (click)="copyToClipboard($event, clip.docID)" href="#" class="bg-zinc-800 font-bold text-white px-2 py-1 ml-2 text-sm rounded">
             Copy Link
           </a>
   
         </div>
 
         <!-- Actions -->
-        <div class="flex text-center text-2xl bg-black p-2 mt-auto">
-          <a (click)="openModal($event, clip)" href="#" class="flex-1 p-2 border-right border-r-2 border-white text-white transition hover:text-gray-400">
-            <span class="material-icons text-base">build</span>
+        <div class="flex text-center text-2xl p-2 mt-auto">
+          <a (click)="openModal($event, clip)" href="#" class="flex-1 p-2 text-black transition hover:text-gray-600">
+            <span class="material-icons text-base">edit</span>
           </a>
-          <a (click)="deleteClip($event, clip)" href="#" class="flex-1 p-2 rounded-br-2xl text-white transition hover:text-red-800">
+          <a (click)="deleteClip($event, clip)" href="#" class="flex-1 p-2 rounded-br-2xl text-red-600 transition hover:text-red-800">
             <span class="material-icons text-base">delete</span>
           </a>
         </div>

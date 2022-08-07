@@ -1,11 +1,11 @@
 <!-- Main Content -->
-<section class="container mx-auto my-8 bg-secondary p-6">
+<section class="container mx-auto bg-secondary p-6">
     <div class="rounded relative flex flex-col">
       <!-- Title and Uploader -->
       <h1 class="font-bold mb-2 text-3xl">
         {{ clip?.title }}
       </h1>
-      <div class="text-gray-800 mb-6">
+      <div class="bg-zinc-800 font-bold text-white mb-6 p-3 rounded">
         Subido por {{ clip?.displayName}} el
         <span>{{ clip?.timestamp | fbTimeStamp}}</span>
       </div>
@@ -14,15 +14,15 @@
       <div class="relative aspect-w-4 aspect-h-3">
         <!-- Video Player -->
         <video controls #videoPlayer crossorigin
-          class="video-js vjs-fluid vjs-theme-forest mx-auto">
+          class="video-js vjs-fluid vjs-theme-city mx-auto">
         </video>
       </div>
     </div>
   </section>
 
   <!-- More Clips -->
-  <div class="container mx-auto my-8">
-    <h2 class="mt-6 text-2xl">More Clips</h2>
+  <div class="container mx-auto my-8 px-4">
+    <h2 class="mt-4 ml-4 font-bold text-2xl border-b-4 border-zinc-800">Mira más de tus videos</h2>
 
     <!-- Video List -->
     <app-clips-list [scrollable]="false"></app-clips-list>

@@ -11,18 +11,18 @@ import { DatePipe } from '@angular/common';
 export class ClipsListComponent implements OnInit, OnDestroy {
   @Input() scrollable = true
 
-  constructor(public clipService: ClipService) {
+  constructor(public clipService: ClipService) { 
     this.clipService.getClips()
-   }
+  }
 
   ngOnInit(): void {
-    if (this.scrollable) {
+    if(this.scrollable) {
       window.addEventListener('scroll', this.handleScroll)
     }
   }
 
-  ngOnDestroy(): void {
-    if (this.scrollable) {
+  ngOnDestroy() {
+    if(this.scrollable) {
       window.removeEventListener('scroll', this.handleScroll)
     }
 
@@ -33,11 +33,10 @@ export class ClipsListComponent implements OnInit, OnDestroy {
     const { scrollTop, offsetHeight } = document.documentElement
     const { innerHeight } = window
 
-    const bottomOfWindow = Math.round(scrollTop) + innerHeight === offsetHeight
+    const bottomOfWindow = Math.round(scrollTop) + innerHeight < offsetHeight - 100
 
-    if (bottomOfWindow) {
+    if(bottomOfWindow) {
       this.clipService.getClips()
     }
   }
-
 }
